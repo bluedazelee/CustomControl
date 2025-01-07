@@ -25,6 +25,9 @@ public class SwitchButtonCtrl extends AnchorPane{
     private BooleanProperty isOn = new SimpleBooleanProperty(false);
     
     private ObjectProperty<Paint> knobColor = new SimpleObjectProperty<>(Color.rgb(221, 221, 221));
+    private ObjectProperty<Paint> backgroundColor = new SimpleObjectProperty<>(Color.rgb(201, 201, 201));
+    
+    private ObjectProperty<Paint> originBackground = new SimpleObjectProperty<>();
     
     protected TranslateTransition transition;
     
@@ -50,6 +53,9 @@ public class SwitchButtonCtrl extends AnchorPane{
     	knob.onMouseClickedProperty().set(event -> switchState());
     	
     	knob.fillProperty().bind(knobColor);
+    	background.fillProperty().bind(backgroundColor);
+    	
+    	originBackground.setValue(backgroundColor.getValue());
     }
     
     public Paint getKnobColor() {
@@ -58,6 +64,18 @@ public class SwitchButtonCtrl extends AnchorPane{
     
     public void setKnobColor(Paint knobColor) {
     	this.knobColor.setValue(knobColor);
+    }
+    
+    public Paint getBackgroundColor() {
+    	return backgroundColor.getValue();
+    }
+    
+    public void setBackgroundColor(Paint backgroundColor) {
+    	this.backgroundColor.setValue(backgroundColor);
+    }
+    
+    public void setOriginBackground(Paint originbackground) {
+    	this.originBackground.setValue(originbackground);
     }
     
     public boolean getIsOn() {
@@ -70,11 +88,11 @@ public class SwitchButtonCtrl extends AnchorPane{
 		if(isOn) {
 			transition.setToX(45-15);
 			transition.play();
-			background.setFill(Paint.valueOf("#005A9C"));
+			setBackgroundColor(Paint.valueOf("#005A9C"));
 		} else {
 			transition.setToX(0);
 			transition.play();
-			background.setFill(Paint.valueOf("#c9c9c9"));
+			setBackgroundColor(originBackground.getValue());
 		}
 	}
     
