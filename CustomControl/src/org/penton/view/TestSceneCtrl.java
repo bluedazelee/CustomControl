@@ -62,10 +62,10 @@ public class TestSceneCtrl implements Initializable{
 	
 	@FXML
 	void handleBtn(ActionEvent event) {
-		if (switchBtn.getKnobColor() == Color.GREEN) {
+		if (switchBtn.getKnobColor() == Color.DODGERBLUE) {
 			switchBtn.setKnobColor(Color.rgb(221, 221, 221));
 		} else {
-			switchBtn.setKnobColor(Color.GREEN);
+			switchBtn.setKnobColor(Color.DODGERBLUE);
 		}
 	}
 
